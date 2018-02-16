@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/imgHeaderBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:contentDescription="@string/menu.header.background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/menu_header" />
+
+    <TextView
+        android:id="@+id/txtHeaderMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="correo@mail.com" />
+
+    <TextView
+        android:id="@+id/txtHeaderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintBottom_toTopOf="@+id/txtHeaderMail"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Nombre Usuario" />
+
+    <ImageView
+        android:id="@+id/imgHeaderAvatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/menu.header.user_avatar"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/txtHeaderName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+
+</android.support.constraint.ConstraintLayout>

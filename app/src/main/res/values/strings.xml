@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Capital</string>
+
+    <!--Main-->
+    <!--Menu-->
+    <string name="menu.header.user_avatar">Avatar del usuario</string>
+    <string name="menu.main">Vista principal</string>
+    <string name="menu.records">Registros</string>
+    <string name="menu.accounts">Cuentas</string>
+    <string name="menu.categories">Categorías</string>
+    <string name="menu.header.background">Fondo de encabezado</string>
 </resources>
