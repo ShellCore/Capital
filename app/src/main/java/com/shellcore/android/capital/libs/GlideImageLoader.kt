@@ -7,6 +7,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.shellcore.android.capital.libs.base.ImageLoader
 
+/**
+ * Created by MOGC. 2018/02/15.
+ */
 class GlideImageLoader(val requestManager: RequestManager) : ImageLoader {
 
     override fun load(view: ImageView, url: String) {

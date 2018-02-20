@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Capital</string>
 
-    <!--Main-->
+    <!--Default-->
+    <string name="default.empty_list">Lista vacía</string>
+
     <!--Menu-->
     <string name="menu.header.user_avatar">Avatar del usuario</string>
     <string name="menu.main">Vista principal</string>
@@ -9,4 +11,14 @@
     <string name="menu.accounts">Cuentas</string>
     <string name="menu.categories">Categorías</string>
     <string name="menu.header.background">Fondo de encabezado</string>
+
+    <!--Main-->
+
+    <!--Accounts-->
+    <string name="accounts.type.cash">Efectivo</string>
+    <string name="accounts.type.debit">Débito</string>
+    <string name="accounts.type.credit">Crédito</string>
+    <string name="accounts.type.saving">Ahorros</string>
+    <string name="accounts.type.other">Otro</string>
+    <string name="progress_wait">Espere un momento por favor...</string>
 </resources>
