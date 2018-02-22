@@ -4,8 +4,9 @@ import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import android.widget.Toolbar
 import com.shellcore.android.capital.R
 import com.shellcore.android.capital.ui.accounts.ui.AccountsFragment
 import com.shellcore.android.capital.ui.base.ToolbarActivity
@@ -21,6 +22,15 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
         setContentView(R.layout.activity_main)
         setupToolbar(toolbar as Toolbar)
         navMain.setNavigationItemSelectedListener(this)
+        setupDrawer()
+    }
+
+    override fun onBackPressed() {
+        if (contentMain.isDrawerOpen(GravityCompat.START)) {
+            contentMain.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -43,12 +53,26 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
         return true
     }
 
+    private fun setOnlySelectedItemChecked(item: MenuItem) {
+        for (i in 0..navMain.menu.size()) {
+            var otherItem = navMain.menu.getItem(i)
+            otherItem.isChecked = false
+        }
+        item.isChecked = true
+    }
+
+    private fun setupDrawer() {
+        var drawerToggle = ActionBarDrawerToggle(this, contentMain, toolbar as Toolbar, R.string.drawer_open, R.string.drawer_close)
+        contentMain.addDrawerListener(drawerToggle)
+        drawerToggle.syncState()
+    }
+
     private fun handleMenuMain() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun handleMenuRecord() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun handleMenuAccounts() {
@@ -56,7 +80,7 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     private fun handleMenuCategories() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun setFragment(fragment: Fragment) {

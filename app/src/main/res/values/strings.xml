@@ -7,6 +7,10 @@
     <string name="default.btn.cancel">Cancelar</string>
     <string name="default.btn.accept">Aceptar</string>
 
+    <!--For Navigation Drawer only-->
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
     <!--Menu-->
     <string name="menu.header.user_avatar">Avatar del usuario</string>
     <string name="menu.main">Vista principal</string>
