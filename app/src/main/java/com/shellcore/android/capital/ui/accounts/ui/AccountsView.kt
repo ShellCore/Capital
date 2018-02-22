@@ -13,5 +13,5 @@ interface AccountsView {
 
     fun showList()
     fun hideList()
-    fun updateList(account: List<Account>)
+    fun updateList(accounts: List<Account>)
 }

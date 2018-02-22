@@ -1,5 +1,6 @@
 package com.shellcore.android.capital.ui.accounts.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.DividerItemDecoration
@@ -9,6 +10,7 @@ import android.widget.Toolbar
 import com.shellcore.android.capital.CapitalApplication
 import com.shellcore.android.capital.R
 import com.shellcore.android.capital.db.models.Account
+import com.shellcore.android.capital.ui.account.ui.AccountDetailActivity
 import com.shellcore.android.capital.ui.accounts.AccountsPresenter
 import com.shellcore.android.capital.ui.accounts.ui.adapter.AccountListener
 import com.shellcore.android.capital.ui.accounts.ui.adapter.AccountsAdapter
@@ -48,8 +50,6 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     override fun showProgress() {
-        if (snackbar == null) {
-        }
         snackbar.show()
     }
 
@@ -76,7 +76,10 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     override fun onClick(account: Account) {
-        contenAccounts.showMessage(account.toString())
+        var intent = Intent(this, AccountDetailActivity::class.java).apply {
+            putExtra(AccountDetailActivity.ACCOUNT_KEY, account)
+        }
+        startActivity(intent)
     }
 
     private fun setupComponents() {
@@ -106,7 +109,6 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     private fun addAccount() {
-        contenAccounts.showMessage("Not implemented yet!")
+        startActivity(Intent(this, AccountDetailActivity::class.java))
     }
 }
-
