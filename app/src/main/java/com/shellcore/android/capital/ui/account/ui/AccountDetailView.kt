@@ -10,4 +10,5 @@ interface AccountDetailView {
     fun enableInputs()
     fun disableInputs()
     fun showMessage(message: String)
+    fun returnToAccountList(resultCode: Int)
 }

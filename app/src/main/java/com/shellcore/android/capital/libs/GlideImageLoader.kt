@@ -10,7 +10,7 @@ import com.shellcore.android.capital.libs.base.ImageLoader
 /**
  * Created by MOGC. 2018/02/15.
  */
-class GlideImageLoader(val requestManager: RequestManager) : ImageLoader {
+class GlideImageLoader(private val requestManager: RequestManager) : ImageLoader {
 
     override fun load(view: ImageView, url: String) {
         requestManager.load(Uri.parse(url))

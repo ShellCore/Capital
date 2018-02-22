@@ -5,4 +5,5 @@ import com.shellcore.android.capital.db.models.Account
 interface AccountDetailRepository {
 
     fun saveAccount(account: Account)
+    fun accountAlreadyExists(account: Account): Boolean
 }

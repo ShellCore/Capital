@@ -15,7 +15,7 @@ import javax.inject.Singleton
  * Created by MOGC. 2018/02/15.
  */
 @Module
-class LibsModule(val activity: Activity) {
+class LibsModule(private val activity: Activity) {
 
     @Provides
     @Singleton

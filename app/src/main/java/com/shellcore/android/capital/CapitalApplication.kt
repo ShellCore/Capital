@@ -4,6 +4,10 @@ import android.app.Activity
 import android.app.Application
 import com.raizlabs.android.dbflow.config.FlowManager
 import com.shellcore.android.capital.libs.di.LibsModule
+import com.shellcore.android.capital.ui.account.di.AccountDetailComponent
+import com.shellcore.android.capital.ui.account.di.AccountDetailModule
+import com.shellcore.android.capital.ui.account.di.DaggerAccountDetailComponent
+import com.shellcore.android.capital.ui.account.ui.AccountDetailView
 import com.shellcore.android.capital.ui.accounts.di.AccountsComponent
 import com.shellcore.android.capital.ui.accounts.di.AccountsModule
 import com.shellcore.android.capital.ui.accounts.di.DaggerAccountsComponent
@@ -36,6 +40,13 @@ class CapitalApplication: Application() {
         return DaggerAccountsComponent.builder()
                 .libsModule(LibsModule(activity))
                 .accountsModule(AccountsModule(view))
+                .build()
+    }
+
+    fun getAccountDetailComponent(activity: Activity, view: AccountDetailView): AccountDetailComponent {
+        return DaggerAccountDetailComponent.builder()
+                .libsModule(LibsModule(activity))
+                .accountDetailModule(AccountDetailModule(view))
                 .build()
     }
 }

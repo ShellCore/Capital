@@ -9,7 +9,7 @@ import org.greenrobot.eventbus.Subscribe
 /**
  * Created by MOGC. 2018/02/20.
  */
-class AccountsPresenterImpl(val eventBus: EventBus, var view: AccountsView?, val interactor: AccountsInteractor) : AccountsPresenter {
+class AccountsPresenterImpl(val eventBus: EventBus, var view: AccountsView?, private val interactor: AccountsInteractor) : AccountsPresenter {
 
     override fun onCreate() {
         eventBus.register(this)

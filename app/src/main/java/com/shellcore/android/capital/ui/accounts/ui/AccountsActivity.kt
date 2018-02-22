@@ -24,6 +24,11 @@ import javax.inject.Inject
  */
 class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
 
+    companion object {
+        const val CREATE_ACCOUNT = 1
+        const val UPDATE_ACCOUNT = 2
+    }
+
     private lateinit var snackbar: Snackbar
     private lateinit var accountsAdapter: AccountsAdapter
 
@@ -47,6 +52,13 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     override fun onDestroy() {
         presenter.onDestroy()
         super.onDestroy()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == 0) {
+            presenter.getAccounts()
+        }
     }
 
     override fun showProgress() {
@@ -76,15 +88,15 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     override fun onClick(account: Account) {
-        var intent = Intent(this, AccountDetailActivity::class.java).apply {
+        val intent = Intent(this, AccountDetailActivity::class.java).apply {
             putExtra(AccountDetailActivity.ACCOUNT_KEY, account)
         }
-        startActivity(intent)
+        startActivityForResult(intent, UPDATE_ACCOUNT)
     }
 
     private fun setupComponents() {
-        snackbar = Snackbar.make(contenAccounts, R.string.progress_wait, Snackbar.LENGTH_INDEFINITE)
-        fltAddAccount.setOnClickListener() {
+        snackbar = Snackbar.make(contenAccounts, R.string.default_progress_wait, Snackbar.LENGTH_INDEFINITE)
+        fltAddAccount.setOnClickListener {
             addAccount()
         }
     }
@@ -109,6 +121,6 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     private fun addAccount() {
-        startActivity(Intent(this, AccountDetailActivity::class.java))
+        startActivityForResult(Intent(this, AccountDetailActivity::class.java), CREATE_ACCOUNT)
     }
 }

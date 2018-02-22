@@ -3,6 +3,7 @@
 
     <!--Default-->
     <string name="default.empty_list">Lista vacía</string>
+    <string name="default.progress_wait">Espere un momento por favor</string>
     <string name="default.btn.cancel">Cancelar</string>
     <string name="default.btn.accept">Aceptar</string>
 
@@ -17,12 +18,21 @@
     <!--Main-->
 
     <!--Accounts-->
+    <string name="account.hint.description">Descripción</string>
+    <string name="account.hint.limit">Limite</string>
+
+    <!--Account types-->
+    <string-array name="accounts.types">
+        <item>@string/accounts.type.cash</item>
+        <item>@string/accounts.type.debit</item>
+        <item>@string/accounts.type.credit</item>
+        <item>@string/accounts.type.saving</item>
+        <item>@string/accounts.type.other</item>
+    </string-array>
+
     <string name="accounts.type.cash">Efectivo</string>
     <string name="accounts.type.debit">Débito</string>
     <string name="accounts.type.credit">Crédito</string>
     <string name="accounts.type.saving">Ahorros</string>
     <string name="accounts.type.other">Otro</string>
-    <string name="progress_wait">Espere un momento por favor...</string>
-    <string name="account.hint.description">Descripción</string>
-    <string name="account.hint.limit">Limite</string>
 </resources>

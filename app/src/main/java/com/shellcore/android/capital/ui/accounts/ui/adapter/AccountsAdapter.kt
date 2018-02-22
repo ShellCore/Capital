@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_account.view.*
 /**
  * Created by MOGC. 2018/02/20.
  */
-class AccountsAdapter(var accounts: List<Account>, var listener: AccountListener): RecyclerView.Adapter<AccountsAdapter.ViewHolder>() {
+class AccountsAdapter(var accounts: List<Account>, private var listener: AccountListener): RecyclerView.Adapter<AccountsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.item_account), listener)
 
@@ -27,11 +27,12 @@ class AccountsAdapter(var accounts: List<Account>, var listener: AccountListener
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View, val listener: AccountListener): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val listener: AccountListener): RecyclerView.ViewHolder(itemView) {
         fun bind(account: Account) {
             with(itemView) {
                 txtAccount.text = account.name
-                txtAccountType.text = resources.getString(account.getAccountType())
+                val accountTypes = resources.getStringArray(R.array.accounts_types)
+                txtAccountType.text = accountTypes[account.type]
                 txtBalance.text = account.balance.toCurrency()
                 cnsItem.setOnClickListener {
                     listener.onClick(account)

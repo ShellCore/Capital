@@ -9,7 +9,7 @@ import javax.inject.Singleton
  * Created by MOGC. 2018/02/20.
  */
 @Singleton
-@Component(modules = arrayOf(LibsModule::class, AccountsModule::class))
+@Component(modules = [LibsModule::class, AccountsModule::class])
 interface AccountsComponent {
     fun inject(activity: AccountsActivity)
 }

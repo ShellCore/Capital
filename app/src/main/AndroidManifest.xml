@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.accounts.ui.AccountsActivity" />
-        <activity android:name=".ui.account.ui.AccountDetailActivity"></activity>
+        <activity android:name=".ui.account.ui.AccountDetailActivity" />
     </application>
 
 </manifest>

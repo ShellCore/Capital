@@ -12,7 +12,7 @@ import com.shellcore.android.capital.ui.accounts.events.AccountsEvent
 class AccountsRepositoryImpl(val eventBus: EventBus) : AccountsRepository {
 
     override fun getAccounts() {
-        var accounts = SQLite.select()
+        val accounts = SQLite.select()
                 .from(Account::class.java)
                 .orderBy(Account_Table.name, true)
                 .queryList()
@@ -24,7 +24,7 @@ class AccountsRepositoryImpl(val eventBus: EventBus) : AccountsRepository {
     }
 
     private fun post(eventType: Int, accounts: List<Account>? = null) {
-        var event = AccountsEvent()
+        val event = AccountsEvent()
         event.apply {
             type = eventType
             this.accounts = accounts

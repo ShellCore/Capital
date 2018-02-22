@@ -15,4 +15,4 @@ fun View.showMessage(message: String, duration: Int = Snackbar.LENGTH_SHORT) = S
 fun ViewGroup.inflate(resource: Int): View = LayoutInflater.from(context).inflate(resource, this, false)
 
 fun Double.toCurrency() = NumberFormat.getCurrencyInstance(Locale.getDefault())
-        .format(this)
+        .format(this)!!

@@ -5,5 +5,5 @@ package com.shellcore.android.capital.base
  */
 open class BaseEvent {
     var type: Int = 0
-    var Message: String = ""
+    var message: String = ""
 }

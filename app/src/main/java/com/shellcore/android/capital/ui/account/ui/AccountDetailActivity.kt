@@ -2,7 +2,11 @@ package com.shellcore.android.capital.ui.account.ui
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toolbar
+import com.shellcore.android.capital.CapitalApplication
 import com.shellcore.android.capital.R
 import com.shellcore.android.capital.db.models.Account
 import com.shellcore.android.capital.ui.account.AccountDetailPresenter
@@ -14,17 +18,18 @@ import javax.inject.Inject
 /**
  * Created by MOGC. 2018/02/21.
  */
-class AccountDetailActivity : ToolbarActivity(), AccountDetailView {
+class AccountDetailActivity : ToolbarActivity(), AccountDetailView, AdapterView.OnItemSelectedListener {
 
     companion object {
         const val ACCOUNT_KEY = "account"
     }
 
-    private lateinit var account: Account
-    private lateinit var snackbar: Snackbar
-
     @Inject
     lateinit var presenter: AccountDetailPresenter
+
+    private lateinit var account: Account
+    private lateinit var snackbar: Snackbar
+    private lateinit var accountTypeList: Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +67,17 @@ class AccountDetailActivity : ToolbarActivity(), AccountDetailView {
         cnsAccountDetail.showMessage(message)
     }
 
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        account.type = position
+    }
+
+    override fun returnToAccountList(resultCode: Int) {
+        setResult(resultCode)
+        finish()
+    }
+
     private fun setInputsEnabled(enabled: Boolean) {
         tilName.editText!!.isEnabled = enabled
         tilLimit.editText!!.isEnabled = enabled
@@ -70,18 +86,30 @@ class AccountDetailActivity : ToolbarActivity(), AccountDetailView {
     }
 
     private fun setupComponents() {
-        snackbar = Snackbar.make(cnsAccountDetail, R.string.progress_wait, Snackbar.LENGTH_SHORT)
-        btnCancel.setOnClickListener { onBackPressed() }
+        snackbar = Snackbar.make(cnsAccountDetail, R.string.default_progress_wait, Snackbar.LENGTH_SHORT)
+
+        accountTypeList = resources.getStringArray(R.array.accounts_types)
+        spnAccountType.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, accountTypeList)
+        spnAccountType.onItemSelectedListener = this
+
+        btnCancel.setOnClickListener {
+            returnToAccountList(-1)
+        }
         btnAccept.setOnClickListener { saveAccount() }
     }
 
     private fun setupInjection() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val app = application as CapitalApplication
+        val component = app.getAccountDetailComponent(this, this)
+        component.inject(this)
     }
 
     private fun getAccount() {
         if (intent.hasExtra(ACCOUNT_KEY)) {
-            account = intent.getParcelableExtra<Account>(ACCOUNT_KEY)
+            account = intent.getParcelableExtra(ACCOUNT_KEY)
+            tilName.editText!!.setText(account.name)
+            tilLimit.editText!!.setText(account.limit.toString())
+            spnAccountType.setSelection(account.type)
         } else {
             account = Account()
         }
@@ -92,10 +120,9 @@ class AccountDetailActivity : ToolbarActivity(), AccountDetailView {
         account.apply {
 
             name = tilName.editText!!.text.toString()
-            // type = //TODO Falta realizar la lista de tipos de cuenta
             balance = 0.0
             if (type == Account.CREDIT) {
-                limit = tilLimit.editText!!.text.toString() as Double
+                limit = tilLimit.editText!!.text.toString().toDouble()
             }
             presenter.saveAccount(this)
         }
