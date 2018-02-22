@@ -1,13 +1,13 @@
 package com.shellcore.android.capital.ui.main.ui
 
-import android.content.Intent
+import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.view.MenuItem
 import android.widget.Toolbar
 import com.shellcore.android.capital.R
-import com.shellcore.android.capital.ui.accounts.ui.AccountsActivity
+import com.shellcore.android.capital.ui.accounts.ui.AccountsFragment
 import com.shellcore.android.capital.ui.base.ToolbarActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,11 +24,20 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        item.isChecked = true
         when (item.itemId) {
-            R.id.actionMain -> handleMenuMain()
-            R.id.actionRecord -> handleMenuRecord()
-            R.id.actionAccounts -> handleMenuAccounts()
-            R.id.actionCategories -> handleMenuCategories()
+            R.id.actionMain -> {
+                handleMenuMain()
+            }
+            R.id.actionRecord -> {
+                handleMenuRecord()
+            }
+            R.id.actionAccounts -> {
+                handleMenuAccounts()
+            }
+            R.id.actionCategories -> {
+                handleMenuCategories()
+            }
         }
         contentMain.closeDrawer(GravityCompat.START)
         return true
@@ -43,10 +52,16 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     private fun handleMenuAccounts() {
-        startActivity(Intent(this, AccountsActivity::class.java))
+        setFragment(AccountsFragment())
     }
 
     private fun handleMenuCategories() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun setFragment(fragment: Fragment) {
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment, fragment)
+                .commit()
     }
 }

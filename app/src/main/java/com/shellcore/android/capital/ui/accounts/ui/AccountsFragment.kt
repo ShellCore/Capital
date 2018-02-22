@@ -1,12 +1,14 @@
 package com.shellcore.android.capital.ui.accounts.ui
 
+import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toolbar
+import android.view.ViewGroup
 import com.shellcore.android.capital.CapitalApplication
 import com.shellcore.android.capital.R
 import com.shellcore.android.capital.db.models.Account
@@ -14,15 +16,11 @@ import com.shellcore.android.capital.ui.account.ui.AccountDetailActivity
 import com.shellcore.android.capital.ui.accounts.AccountsPresenter
 import com.shellcore.android.capital.ui.accounts.ui.adapter.AccountListener
 import com.shellcore.android.capital.ui.accounts.ui.adapter.AccountsAdapter
-import com.shellcore.android.capital.ui.base.ToolbarActivity
 import com.shellcore.android.capital.utils.showMessage
-import kotlinx.android.synthetic.main.activity_accounts.*
+import kotlinx.android.synthetic.main.fragment_accounts.*
 import javax.inject.Inject
 
-/**
- * Created by MOGC. 2018/02/20.
- */
-class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
+class AccountsFragment : Fragment(), AccountsView, AccountListener {
 
     companion object {
         const val CREATE_ACCOUNT = 1
@@ -35,10 +33,13 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     @Inject
     lateinit var presenter: AccountsPresenter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_accounts)
-        setupToolbar(toolbar as Toolbar)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_accounts, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupComponents()
         setupInjection()
         setupAdapter()
@@ -46,12 +47,6 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
 
         presenter.onCreate()
         presenter.getAccounts()
-
-    }
-
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -88,7 +83,7 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     override fun onClick(account: Account) {
-        val intent = Intent(this, AccountDetailActivity::class.java).apply {
+        val intent = Intent(activity, AccountDetailActivity::class.java).apply {
             putExtra(AccountDetailActivity.ACCOUNT_KEY, account)
         }
         startActivityForResult(intent, UPDATE_ACCOUNT)
@@ -102,8 +97,8 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     private fun setupInjection() {
-        val app = application as CapitalApplication
-        val component = app.getAccountsComponent(this, this)
+        val app = activity.application as CapitalApplication
+        val component = app.getAccountsComponent(activity, this)
         component.inject(this)
     }
 
@@ -121,6 +116,6 @@ class AccountsActivity : ToolbarActivity(), AccountsView, AccountListener {
     }
 
     private fun addAccount() {
-        startActivityForResult(Intent(this, AccountDetailActivity::class.java), CREATE_ACCOUNT)
+        startActivityForResult(Intent(activity, AccountDetailActivity::class.java), CREATE_ACCOUNT)
     }
 }

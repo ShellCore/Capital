@@ -16,7 +16,8 @@ open class ToolbarActivity: AppCompatActivity() {
             setActionBar(toolbar)
         }
         actionBar.apply {
-            setIcon(R.mipmap.ic_launcher)
+            setHomeAsUpIndicator(R.mipmap.ic_launcher_round)
+            setDisplayHomeAsUpEnabled(true)
         }
     }
 }
