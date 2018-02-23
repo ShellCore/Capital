@@ -12,6 +12,14 @@ import com.shellcore.android.capital.ui.accounts.di.AccountsComponent
 import com.shellcore.android.capital.ui.accounts.di.AccountsModule
 import com.shellcore.android.capital.ui.accounts.di.DaggerAccountsComponent
 import com.shellcore.android.capital.ui.accounts.ui.AccountsView
+import com.shellcore.android.capital.ui.categories.di.CategoriesComponent
+import com.shellcore.android.capital.ui.categories.di.CategoriesModule
+import com.shellcore.android.capital.ui.categories.di.DaggerCategoriesComponent
+import com.shellcore.android.capital.ui.categories.ui.CategoriesView
+import com.shellcore.android.capital.ui.category.di.CategoryDetailComponent
+import com.shellcore.android.capital.ui.category.di.CategoryDetailModule
+import com.shellcore.android.capital.ui.category.di.DaggerCategoryDetailComponent
+import com.shellcore.android.capital.ui.category.ui.CategoryDetailView
 
 /**
  * Created by MOGC. 2018/02/15.
@@ -47,6 +55,20 @@ class CapitalApplication: Application() {
         return DaggerAccountDetailComponent.builder()
                 .libsModule(LibsModule(activity))
                 .accountDetailModule(AccountDetailModule(view))
+                .build()
+    }
+
+    fun getCategoriesComponent(activity: Activity, view: CategoriesView): CategoriesComponent {
+        return DaggerCategoriesComponent.builder()
+                .libsModule(LibsModule(activity))
+                .categoriesModule(CategoriesModule(view))
+                .build()
+    }
+
+    fun getCategoryDetailComponent(activity: Activity, view: CategoryDetailView): CategoryDetailComponent {
+        return DaggerCategoryDetailComponent.builder()
+                .libsModule(LibsModule(activity))
+                .categoryDetailModule(CategoryDetailModule(view))
                 .build()
     }
 }

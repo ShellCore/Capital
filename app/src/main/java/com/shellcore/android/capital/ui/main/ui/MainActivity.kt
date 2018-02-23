@@ -10,6 +10,7 @@ import android.view.MenuItem
 import com.shellcore.android.capital.R
 import com.shellcore.android.capital.ui.accounts.ui.AccountsFragment
 import com.shellcore.android.capital.ui.base.ToolbarActivity
+import com.shellcore.android.capital.ui.categories.ui.CategoriesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -34,7 +35,7 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        item.isChecked = true
+        setOnlySelectedItemChecked(item)
         when (item.itemId) {
             R.id.actionMain -> {
                 handleMenuMain()
@@ -54,7 +55,7 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     private fun setOnlySelectedItemChecked(item: MenuItem) {
-        for (i in 0..navMain.menu.size()) {
+        for (i in 0..navMain.menu.size() - 1) {
             var otherItem = navMain.menu.getItem(i)
             otherItem.isChecked = false
         }
@@ -62,7 +63,7 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     private fun setupDrawer() {
-        var drawerToggle = ActionBarDrawerToggle(this, contentMain, toolbar as Toolbar, R.string.drawer_open, R.string.drawer_close)
+        val drawerToggle = ActionBarDrawerToggle(this, contentMain, toolbar as Toolbar, R.string.drawer_open, R.string.drawer_close)
         contentMain.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
     }
@@ -80,7 +81,7 @@ class MainActivity : ToolbarActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     private fun handleMenuCategories() {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        setFragment(CategoriesFragment())
     }
 
     private fun setFragment(fragment: Fragment) {

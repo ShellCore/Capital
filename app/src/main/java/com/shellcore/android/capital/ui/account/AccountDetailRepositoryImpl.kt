@@ -12,7 +12,7 @@ class AccountDetailRepositoryImpl(val eventBus: EventBus) : AccountDetailReposit
         if (account.save()) {
             post(AccountDetailEvent.CREATE_ACCOUNT_SUCCESS, account)
         } else {
-            post(AccountDetailEvent.CREATE_ACCOUNT_ERROR, message = "Hubo un error en el almacenamiento de la cuenta")
+        post(AccountDetailEvent.CREATE_ACCOUNT_ERROR, message = "Hubo un error en el almacenamiento de la cuenta.")
         }
     }
 

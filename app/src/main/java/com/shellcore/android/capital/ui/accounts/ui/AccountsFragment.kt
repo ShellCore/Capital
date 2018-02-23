@@ -49,6 +49,11 @@ class AccountsFragment : Fragment(), AccountsView, AccountListener {
         presenter.getAccounts()
     }
 
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == 0) {
@@ -65,7 +70,7 @@ class AccountsFragment : Fragment(), AccountsView, AccountListener {
     }
 
     override fun showMessage(message: String) {
-        contenAccounts.showMessage(message)
+        contentAccounts.showMessage(message)
     }
 
     override fun showList() {
@@ -90,7 +95,7 @@ class AccountsFragment : Fragment(), AccountsView, AccountListener {
     }
 
     private fun setupComponents() {
-        snackbar = Snackbar.make(contenAccounts, R.string.default_progress_wait, Snackbar.LENGTH_INDEFINITE)
+        snackbar = Snackbar.make(contentAccounts, R.string.default_progress_wait, Snackbar.LENGTH_INDEFINITE)
         fltAddAccount.setOnClickListener {
             addAccount()
         }

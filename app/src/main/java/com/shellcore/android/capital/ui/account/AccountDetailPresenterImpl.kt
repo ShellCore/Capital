@@ -25,8 +25,8 @@ class AccountDetailPresenterImpl(val eventBus: EventBus, var view: AccountDetail
     override fun onEventMainThread(event: AccountDetailEvent) {
         when (event.type) {
             AccountDetailEvent.CREATE_ACCOUNT_SUCCESS -> returnToAccountList()
-            AccountDetailEvent.CHECK_VALID_ACCOUNT_ERROR -> showErrorMessage(event.message)
             AccountDetailEvent.CREATE_ACCOUNT_ERROR -> showErrorMessage(event.message)
+            AccountDetailEvent.CHECK_VALID_ACCOUNT_ERROR -> showErrorMessage(event.message)
         }
     }
 

@@ -2,18 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cnsCategoryDetail"
     android:layout_width="match_parent"
-    android:id="@+id/cnsAccountDetail"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.shellcore.android.capital.ui.account.ui.AccountDetailActivity">
+    tools:context="com.shellcore.android.capital.ui.category.ui.CategoryDetailActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -25,51 +25,28 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/tilName"
-                android:layout_margin="@dimen/default_margin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/default_margin">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/account.hint.description"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </android.support.design.widget.TextInputLayout>
-
-            <Spinner
-                android:id="@+id/spnAccountType"
-                android:layout_margin="@dimen/default_margin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/tilLimit"
-                android:layout_width="match_parent"
-                android:layout_margin="@dimen/default_margin"
-                android:layout_height="wrap_content">
-
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/account.hint.limit"
-                    android:inputType="numberDecimal"
+                    android:hint="@string/category.hint.description"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

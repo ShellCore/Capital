@@ -67,15 +67,15 @@ class AccountDetailActivity : ToolbarActivity(), AccountDetailView, AdapterView.
         cnsAccountDetail.showMessage(message)
     }
 
+    override fun returnToAccountList(resultCode: Int) {
+        setResult(resultCode)
+        finish()
+    }
+
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         account.type = position
-    }
-
-    override fun returnToAccountList(resultCode: Int) {
-        setResult(resultCode)
-        finish()
     }
 
     private fun setInputsEnabled(enabled: Boolean) {

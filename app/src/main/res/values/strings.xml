@@ -39,4 +39,7 @@
     <string name="accounts.type.credit">Crédito</string>
     <string name="accounts.type.saving">Ahorros</string>
     <string name="accounts.type.other">Otro</string>
+
+    <!--Categories-->
+    <string name="category.hint.description">Descripción</string>
 </resources>
